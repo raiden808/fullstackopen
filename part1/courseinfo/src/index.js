@@ -11,29 +11,43 @@ const Header = (props) => {
 const Content = (props) => {
 	return (
 		<div>
-			<Part />
-			<Part />
-			<Part />
+			<Part part={props.parts.part[0]} />
+			<Part part={props.parts.part[1]} />
+			<Part part={props.parts.part[2]} />
 		</div>
 	)
 }
 
 const Part = (props) => {
+	//console.log(props.part);
 	return (
 		<p>
-			Test
+			{props.part.name} {props.part.exercises}
 		</p>
 	)
 }
 
+const Total = (props) => {
+	//console.log(props.parts)
+	let partCount = 0;
+	var totalCount = props.parts.part.map((part, index) => {
+       partCount += part.exercises;
+       return partCount
+    })
+
+    console.log(totalCount)
+
+	return(
+		<p>Test</p>
+	)
+}
 
 
 const App = () => {
-	const course        = 'Half Stack application development'
-
-	const parts = 
+	const course = 'Half Stack application development'
+	const parts  = 
 	{
-        parts: [
+        part: [
             {
                 name: 'Fundamentals of React',
                 exercises: 10
@@ -43,14 +57,11 @@ const App = () => {
                 exercises: 7
             },
             {
-                name: 'tate of the component',
+                name: 'State of the component',
                 exercises: 14
             }
         ]
     };
-
-    // access single array
-    console.log(parts.parts[0].name)
 
 	const part1         = 'Fundamentals of React'
 	const excercises1   = 10
@@ -62,16 +73,8 @@ const App = () => {
 	return (
 		<div>
 			<Header course={course} />
-			<Content />
-			<p>
-				{part1} {excercises1}
-			</p>
-			<p>
-				{part2} {excercises2}
-			</p>
-			<p>
-				{part3} {excercises3}
-			</p>
+			<Content parts={parts} />
+			<Total parts={parts} />
 			<p>Number of excercises {excercises1 + excercises2 + excercises3}</p>
 		</div>
 	)
