@@ -1,21 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
-
-
-
-
-
-
 const Header = (props) => {
     return(
         <h1>{props.course}</h1>
     )
 }
-
-
-
 
 const Content = (props) => {
     return (
@@ -27,9 +17,6 @@ const Content = (props) => {
     )
 }
 
-
-
-
 const Part = (props) => {
     //console.log(props.part);
     return (
@@ -39,33 +26,17 @@ const Part = (props) => {
     )
 }
 
-
-
-
 const Total = (props) => {
-
-
-
 
     let partCount = 0;
      props.parts.part.forEach( function(item, index) {
          partCount += item.exercises;
      });
 
-
-
-
     return(
         <p>Number of excercises {partCount}</p>
     )
 }
-
-
-
-
-
-
-
 
 const App = () => {
     const course = 'Half Stack application development'
@@ -87,9 +58,6 @@ const App = () => {
         ]
     };
 
-
-
-
     return (
         <div>
             <Header course={course} />
@@ -98,8 +66,5 @@ const App = () => {
         </div>
     )
 }
-
-
-
 
 ReactDOM.render(<App />,document.getElementById('root'))
