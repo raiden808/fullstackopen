@@ -41,8 +41,14 @@ const App = () =>{
 			<p>bad {bad}</p>
 			<p>all {totalScore}</p>
 			<p>average {(good-bad)/totalScore}</p>
-			<p>positive </p>
+			<p>positive {(good/totalScore)*100}%</p>
 		</div>
+	)
+}
+
+const Statistics = () =>{
+	return (
+
 	)
 }
 
