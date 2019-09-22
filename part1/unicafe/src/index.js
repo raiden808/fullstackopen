@@ -8,6 +8,7 @@ const App = () =>{
 	const [good,setGood] = useState(0);
 	const [neutral,setNeutral] = useState(0);
 	const [bad,setBad] = useState(0);
+	const totalScore = good+neutral+bad;
 
 	const handleClick = (rating) =>{
 		switch (rating) {
@@ -38,6 +39,9 @@ const App = () =>{
 			<p>good {good}</p>
 			<p>neutral {neutral}</p>
 			<p>bad {bad}</p>
+			<p>all {totalScore}</p>
+			<p>average {(good-bad)/totalScore}</p>
+			<p>positive </p>
 		</div>
 	)
 }
