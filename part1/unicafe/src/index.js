@@ -5,13 +5,13 @@ import './index.css';
 
 const App = () =>{
 	//save clicks of each button to own state
-	const [good,setGood] = useState(0);
+	const [good,setGood]       = useState(0);
 	const [neutral,setNeutral] = useState(0);
-	const [bad,setBad] = useState(0);
-	let totalScore = good+bad+neutral;
-	let average =  (good-bad)/totalScore;
-	let positive = (good/totalScore)*100
-	let renderLayout;
+	const [bad,setBad]         = useState(0);
+	let   totalScore           = good+bad+neutral;
+	let   average              = (good-bad)/totalScore;
+	let   positive             = (good/totalScore)*100
+	let   renderLayout;
 
 	const handleClick = (rating) =>{
 		switch (rating) {
@@ -54,10 +54,6 @@ const App = () =>{
 			<Button text="neutral" onClick={()=>{handleClick("neutral")}} />
 			<Button text="bad" onClick={()=>{handleClick("bad")}} />
 			{renderLayout}
-			
-			
-
-			{/*<Statistics1 ratings={{good:good,neutral:neutral,bad:bad}} />*/}
 		</div>
 	)
 }
@@ -76,38 +72,6 @@ const Statistics = ({text,value}) =>{
 	return(
 		<>
 			<p>{text} {value}</p>
-		</>
-	)
-}
-
-const Statistics1 = props =>{
-
-	const ratings = props.ratings
-	const totalScore = ratings.good+ratings.neutral+ratings.bad;
-
-	let renderLayout;
-
-	if(totalScore != 0){
-		renderLayout = <>
-			<p>good {ratings.good}</p>
-			<p>neutral {ratings.neutral}</p>
-			<p>bad {ratings.bad}</p>
-			<p>all {totalScore}</p>
-			<p>average {(ratings.good-ratings.bad)/totalScore}</p>
-			<p>positive {(ratings.good/totalScore)*100}%</p>
-		</>;
-	}
-
-	else {
-		renderLayout = <>
-			<p>No feedback given</p>
-		</>
-	}
-
-	return (
-		<>
-			<h2>Statistics</h2>
-			{renderLayout}
 		</>
 	)
 }
