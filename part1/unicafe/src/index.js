@@ -33,11 +33,14 @@ const App = () =>{
 	if(totalScore != 0){
 		renderLayout = <>
 			<h2>statistics</h2>
-			<Statistics text="good" value={good} />
-			<Statistics text="neutral" value={neutral} />
-			<Statistics text="bad" value={bad} />
-			<Statistics text="average" value={average} />
-			<Statistics text="positive" value={positive} />		
+			
+			<table>
+				<Statistics text="good" value={good} />
+				<Statistics text="neutral" value={neutral} />
+				<Statistics text="bad" value={bad} />
+				<Statistics text="average" value={average} />
+				<Statistics text="positive" value={positive} />		
+			</table>
 		</>;
 	}
 
@@ -71,7 +74,10 @@ const Button = ({onClick,text}) =>{
 const Statistics = ({text,value}) =>{
 	return(
 		<>
-			<p>{text} {value}</p>
+			<tr>
+				<td>{text}</td>
+				<td>{value}</td>
+			</tr>
 		</>
 	)
 }
