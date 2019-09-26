@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 const App = (props) =>{
-	const [selected,setSelected] = 
+	const [selected,setSelected] = useState(0);
 
 	return(
-		<div>test</div>
+		<div>
+      {props.anecdotes[Math.floor(Math.random() * props.anecdotes.length)]}
+    </div>
 	);
 }
 
@@ -19,7 +21,10 @@ const anecdotes = [
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <App anecdotes={anecdotes} />,
+  document.getElementById('root')
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
