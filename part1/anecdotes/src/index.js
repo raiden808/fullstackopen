@@ -4,6 +4,7 @@ import './index.css';
 
 const App = (props) =>{
 	const [selected,setSelected] = useState(0);
+  const [points, setPoints ] = useState([0, 0, 0, 0,0,0])
 
   //set state random generated number
   const handleClickRandom = () =>{
@@ -14,7 +15,12 @@ const App = (props) =>{
   }
 
   const handleClickVote = () =>{
+    const copyPoints = [...points]
 
+    copyPoints[selected] += 1;
+
+    setPoints(copyPoints)
+    console.log(copyPoints)
   }
 
 	return(
