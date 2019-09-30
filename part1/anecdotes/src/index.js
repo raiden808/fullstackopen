@@ -23,13 +23,24 @@ const App = (props) =>{
     console.log(copyPoints)
   }
 
+  const displayHighestValue = allPoints =>{
+    var highest = Math.max(...allPoints);
+
+    return allPoints.indexOf(highest);
+  }
+
 	return(
 		<div>
+      <h2>Anecdote of the day</h2>
       {props.anecdotes[selected]}
+      <p>has {points[selected]}</p>
       <div>
         <button onClick={handleClickVote}>vote</button>
         <button onClick={handleClickRandom}>next anecdote</button>
       </div>
+      <h2>Anecdote with most vote</h2>
+      {props.anecdotes[displayHighestValue(points)]}
+      <p>has {Math.max(...points)}</p>
     </div>
 	);
 }
