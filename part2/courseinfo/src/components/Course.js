@@ -8,16 +8,16 @@ const Header = (props) => {
     )
 }
 
-const Content = (props) => {
-	//console.log(props)
-    return (
-        <div>
-            <Part part={props.parts[0]} />
-            <Part part={props.parts[1]} />
-            <Part part={props.parts[2]} />
-        </div>
-    )
-}
+// const Content = (props) => {
+// 	//console.log(props)
+//     return (
+//         <div>
+//             <Part part={props.parts[0]} />
+//             <Part part={props.parts[1]} />
+//             <Part part={props.parts[2]} />
+//         </div>
+//     )
+// }
 
 const Part = (props) => {
     return (
@@ -27,25 +27,39 @@ const Part = (props) => {
     )
 }
 
-const Total = (props) => {
+// const Total = (props) => {
 
-    let partCount = 0;
-     props.parts.forEach( function(item, index) {
-         partCount += item.exercises;
-     });
+//     let partCount = 0;
+//      props.parts.forEach( function(item, index) {
+//          partCount += item.exercises;
+//      });
+
+//     return(
+//         <p>Number of excercises {partCount}</p>
+//     )
+// }
+
+/*
+* Experimental Content
+*/
+const Content = ({course}) =>{
+    console.log(course);
 
     return(
-        <p>Number of excercises {partCount}</p>
+        <p>Test</p>
     )
 }
 
 const Course = ({course}) => {
 
+    
+
     return (
         <div>
-            <Header course={course.name} />
-            <Content parts={course.parts} />
-            <Total parts={course.parts} />
+            {/*<Header course={course.name} />*/}
+            {/*<Content parts={course.parts} />*/}
+            {/*  <Total parts={course.parts} />*/}
+            <Content course={course} />
         </div>
     )
 }
