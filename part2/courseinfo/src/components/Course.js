@@ -56,8 +56,21 @@ const Parts = ({parts}) => {
 
     console.log(parts)
 
+    const theParts = parts.map((part, index) => {
+      console.log(part)
+       return(
+         <>
+            <p>
+             {part.name} {part.exercises}
+            </p>
+         </>
+       )
+    })
+
     return(
-        <p>test</p>
+        <>
+          {theParts}
+        </>
     )
 }
 
@@ -80,9 +93,6 @@ const Content = ({courses}) =>{
 }
 
 const Course = ({course}) => {
-
-    
-
     return (
         <div>
             {/*<Header course={course.name} />*/}
