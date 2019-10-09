@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-const Header = (props) => {
-    return(
-        <h1>{props.course}</h1>
-    )
-}
+// const Header = ({props}) => {
+//     return(
+//         <h1>{props.course}</h1>
+//     )
+// }
+
+
 
 // const Content = (props) => {
 // 	//console.log(props)
@@ -19,13 +21,13 @@ const Header = (props) => {
 //     )
 // }
 
-const Part = (props) => {
-    return (
-        <p>
-            {props.part.name} {props.part.exercises}
-        </p>
-    )
-}
+// const Part = (props) => {
+//     return (
+//         <p>
+//             {props.part.name} {props.part.exercises}
+//         </p>
+//     )
+// }
 
 // const Total = (props) => {
 
@@ -42,11 +44,38 @@ const Part = (props) => {
 /*
 * Experimental Content
 */
-const Content = ({course}) =>{
-    console.log(course);
+
+
+const Header = ({courseName}) => {
+    return(
+        <h1>{courseName}</h1>
+    )
+}
+
+const Parts = ({parts}) => {
+
+    console.log(parts)
 
     return(
-        <p>Test</p>
+        <p>test</p>
+    )
+}
+
+const Content = ({courses}) =>{
+    console.log(courses);
+
+    const theCourse = courses.map((course, index) => {
+      //console.log(course.name)
+       return(
+         <>
+            <Header courseName={course.name} />
+            <Parts parts={course.parts} />
+         </>
+       )
+    })
+
+    return(
+       <>{theCourse}</>
     )
 }
 
@@ -59,7 +88,7 @@ const Course = ({course}) => {
             {/*<Header course={course.name} />*/}
             {/*<Content parts={course.parts} />*/}
             {/*  <Total parts={course.parts} />*/}
-            <Content course={course} />
+            <Content courses={course} />
         </div>
     )
 }
