@@ -54,10 +54,10 @@ const Header = ({courseName}) => {
 
 const Parts = ({parts}) => {
 
-    console.log(parts)
+    //console.log(parts)
 
     const theParts = parts.map((part, index) => {
-      console.log(part)
+      //console.log(part)
        return(
          <>
             <p>
@@ -75,7 +75,7 @@ const Parts = ({parts}) => {
 }
 
 const Content = ({courses}) =>{
-    console.log(courses);
+    //console.log(courses);
 
     const theCourse = courses.map((course, index) => {
       //console.log(course.name)
@@ -96,16 +96,15 @@ const Content = ({courses}) =>{
 const Total = ({parts}) =>{
 
   //gather all array here.
-   const theParts = parts.map((part, index) => {
-      console.log(part)
-       return(
-         <>
-            <p>
-             {part.name} {part.exercises}
-            </p>
-         </>
-       )
-    })
+  const theTotal = parts.map((part, index) => {
+
+    const excercise = [];
+    excercise.push(part.exercises);
+
+    return excercise
+  })
+
+  console.log(theTotal);
 
   return(
     <>
