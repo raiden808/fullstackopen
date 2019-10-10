@@ -83,6 +83,7 @@ const Content = ({courses}) =>{
          <>
             <Header courseName={course.name} />
             <Parts parts={course.parts} />
+            <Total parts={course.parts} />
          </>
        )
     })
@@ -90,6 +91,27 @@ const Content = ({courses}) =>{
     return(
        <>{theCourse}</>
     )
+}
+
+const Total = ({parts}) =>{
+
+  //gather all array here.
+   const theParts = parts.map((part, index) => {
+      console.log(part)
+       return(
+         <>
+            <p>
+             {part.name} {part.exercises}
+            </p>
+         </>
+       )
+    })
+
+  return(
+    <>
+      Total {}
+    </>
+  )
 }
 
 const Course = ({course}) => {
