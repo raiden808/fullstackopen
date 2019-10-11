@@ -56,7 +56,7 @@ const Total = ({parts}) =>{
 
   return(
     <p>
-      Total {totalExercise.reduce((a, b) => a + b)}
+      <b>Total {totalExercise.reduce((a, b) => a + b)} exercises</b>
     </p>
   )
 }
