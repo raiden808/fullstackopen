@@ -20,6 +20,7 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
+      <div>debug: {newName}</div>
     </div>
   )
 }
