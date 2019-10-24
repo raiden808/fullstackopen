@@ -8,15 +8,40 @@ const App = () => {
 
   const [newName, setNewName] = useState('')
 
+
+  const handleInputChange = e =>{
+    const inputText = e.target.value;
+
+    setNewName(inputText);
+  }
+
+  const handleSubmit = e =>{
+    e.preventDefault();
+
+    const newPersonObject = {
+      ...persons,
+      name: 
+    }
+  }
+
   return(
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
-          name: <input />
+          name: 
+          <input 
+            value={newName} 
+            type="text" 
+            onChange={handleInputChange}
+          />
         </div>
         <div>
-          <button type="submit">add</button>
+          <button 
+            type="submit"
+          >
+            add
+          </button>
         </div>
       </form>
       <h2>Numbers</h2>
