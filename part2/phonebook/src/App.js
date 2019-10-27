@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import logo from './logo.svg';
+import Person from "./components/Person";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -26,8 +27,11 @@ const App = () => {
     setNewName('')
   }
 
-  const rows = () => persons.map(person => 
-   
+  const rows = () => persons.map((person,index)=> 
+    <Person 
+      key={index} 
+      person={person} 
+    />
   );
 
   return(
@@ -51,7 +55,8 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div>debug: {newName}</div>
+      <div><ul>{rows()}</ul></div>
+      
     </div>
   )
 }
