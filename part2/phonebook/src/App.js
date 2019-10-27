@@ -19,10 +19,16 @@ const App = () => {
     e.preventDefault();
 
     const newPersonObject = {
-      ...persons,
-      name: 
+      name: newName
     }
+
+    setPersons(persons.concat(newPersonObject))
+    setNewName('')
   }
+
+  const rows = () => persons.map(person => 
+   
+  );
 
   return(
     <div>
