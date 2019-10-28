@@ -26,7 +26,7 @@ const App = () => {
     const result = persons.filter(obj => {
 
       if(obj.name === newName){
-        alert(newName+" is already added to phonebook.")
+        alert(`${newName} is already added to phonebook`)
         return
       }
     })
