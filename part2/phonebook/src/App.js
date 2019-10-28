@@ -23,6 +23,16 @@ const App = () => {
       name: newName
     }
 
+    const result = persons.filter(obj => {
+
+      if(obj.name === newName){
+        alert(newName+" is already added to phonebook.")
+        return
+      }
+    })
+
+    //console.log("found a similar",result)
+
     setPersons(persons.concat(newPersonObject))
     setNewName('')
   }
