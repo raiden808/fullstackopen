@@ -8,31 +8,41 @@ const App = () => {
   ])
 
   const [newName, setNewName] = useState('')
+  const [newPhone, setNewPhone] = useState('');
 
-
+  /*
+  * Name handler
+  */
   const handleInputChange = e =>{
     const inputText = e.target.value;
 
     setNewName(inputText);
   }
 
+  /*
+  * Phone handler
+  */
+  const handlePhoneChange = e =>{
+    e.preventDefault();
+    const inputText = e.target.value;
+
+    setNewPhone(inputText);
+  }
+
+  /*
+  * Submit handler
+  */
   const handleSubmit = e =>{
     e.preventDefault();
-
     const newPersonObject = {
       name: newName
     }
-
     const result = persons.filter(obj => {
-
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
         return
       }
     })
-
-    //console.log("found a similar",result)
-
     setPersons(persons.concat(newPersonObject))
     setNewName('')
   }
@@ -54,6 +64,14 @@ const App = () => {
             value={newName} 
             type="text" 
             onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          number:
+          <input 
+            value={newPhone}
+            type="text"
+            onChange={handlePhoneChange}
           />
         </div>
         <div>
