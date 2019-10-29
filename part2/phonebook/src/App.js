@@ -4,7 +4,10 @@ import Person from "./components/Person";
 
 const App = () => {
   const [persons, setPersons] = useState([
-    {name: 'Arto Hellas'}
+    {
+      name: 'Arto Hellas',
+      phone: '123-123-123'
+    }
   ])
 
   const [newName, setNewName] = useState('')
@@ -34,19 +37,28 @@ const App = () => {
   */
   const handleSubmit = e =>{
     e.preventDefault();
+
+
     const newPersonObject = {
-      name: newName
+      name: newName,
+      phone: newPhone
     }
+
+    //filter to block existing name
     const result = persons.filter(obj => {
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
         return
       }
     })
+
     setPersons(persons.concat(newPersonObject))
     setNewName('')
   }
 
+  /*
+  * Display
+  */
   const rows = () => persons.map((person,index)=> 
     <Person 
       key={index} 
