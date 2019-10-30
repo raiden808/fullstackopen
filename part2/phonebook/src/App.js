@@ -10,8 +10,9 @@ const App = () => {
     }
   ])
 
-  const [newName, setNewName] = useState('')
-  const [newPhone, setNewPhone] = useState('');
+  const [newName, setNewName]    = useState('')
+  const [newPhone, setNewPhone]  = useState('')
+  const [search,setSearch]       = useState('')
 
   /*
   * Name handler
@@ -57,8 +58,20 @@ const App = () => {
   }
 
   /*
+  * Search handler
+  */
+  const handleSearchChange = e =>{
+    e.preventDefault();
+    const inputText = e.target.value;
+
+    setSearch(inputText);
+  }
+
+  /*
   * Display
   */
+
+  // Will add conditional feature here
   const rows = () => persons.map((person,index)=> 
     <Person 
       key={index} 
@@ -69,6 +82,15 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
+      <div>
+        filter shown with 
+        <input 
+          value={search} 
+          type="text" 
+          onChange={handleSearchChange}
+        />
+      </div>
+      <h2>Add a new</h2>
       <form onSubmit={handleSubmit}>
         <div>
           name: 
