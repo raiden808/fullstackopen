@@ -4,15 +4,15 @@ import Person from "./components/Person";
 
 const App = () => {
   const [persons, setPersons] = useState([
-    {
-      name: 'Arto Hellas',
-      phone: '123-123-123'
-    }
+    { name: 'Arto Hellas', number: '040-123456' },
+    { name: 'Ada Lovelace', number: '39-44-5323523' },
+    { name: 'Dan Abramov', number: '12-43-234345' },
+    { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ])
 
   const [newName, setNewName]    = useState('')
   const [newPhone, setNewPhone]  = useState('')
-  const [search,setSearch]       = useState('')
+  const [search,setSearch]       = useState('arto')
 
   /*
   * Name handler
@@ -72,10 +72,11 @@ const App = () => {
   */
 
   // Will add conditional feature here
-  const rows = () => persons.map((person,index)=> 
+  const rows = () => persons.map((person, index)=> 
     <Person 
       key={index} 
       person={person} 
+      search={search}
     />
   );
 
