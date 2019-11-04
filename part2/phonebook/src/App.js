@@ -2,7 +2,16 @@ import React, { useState} from 'react';
 import logo from './logo.svg';
 import Person from "./components/Person";
 
+
+/*
+* Divide system into three components Good candidates
+  1. Search filter
+  2. add form
+  3. Rendering component
+*/
+
 const App = () => {
+
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456' },
     { name: 'Ada Lovelace', number: '39-44-5323523' },
@@ -68,19 +77,6 @@ const App = () => {
     setSearch(inputText);
   }
 
-  /*
-  * Display
-  */
-
-  // Will add conditional feature here
-  const rows = () => persons.map((person, index)=> 
-    <Person 
-      key={index} 
-      person={person} 
-      search={search}
-    />
-  );
-
   return(
     <div>
       <h2>Phonebook</h2>
@@ -119,8 +115,12 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      <div><ul>{rows()}</ul></div>
-      
+      <div>
+        <Person
+          persons={persons} 
+          search={search}
+        />
+      </div>
     </div>
   )
 }
