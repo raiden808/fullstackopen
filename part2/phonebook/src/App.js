@@ -1,8 +1,9 @@
 import React, { useState} from 'react';
 import logo from './logo.svg';
-import Person from "./components/Person";
 
+import Person from "./components/Person";
 import Filter from "./components/Filter";
+import PersonForm from "./components/PersonForm";
 
 
 /*
@@ -67,6 +68,7 @@ const App = () => {
 
     setPersons(persons.concat(newPersonObject))
     setNewName('')
+    setNewPhone('')
   }
 
   /*
@@ -82,44 +84,22 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
-      {/*<div>
-        filter shown with 
-        <input 
-          value={search} 
-          type="text" 
-          onChange={handleSearchChange}
-        />
-      </div>*/}
+
       <Filter 
         search={search} 
         handleSearchChange={handleSearchChange} 
       />
+      
       <h2>Add a new</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          name: 
-          <input 
-            value={newName} 
-            type="text" 
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          number:
-          <input 
-            value={newPhone}
-            type="text"
-            onChange={handlePhoneChange}
-          />
-        </div>
-        <div>
-          <button 
-            type="submit"
-          >
-            add
-          </button>
-        </div>
-      </form>
+
+      <PersonForm 
+        handleSubmit={handleSubmit}
+        handleInputChange={handleInputChange}
+        handlePhoneChange={handlePhoneChange}
+        newPhone={newPhone}
+        newName={newName}
+      />
+
       <h2>Numbers</h2>
       <div>
         <Person
