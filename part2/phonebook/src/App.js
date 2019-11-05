@@ -2,12 +2,14 @@ import React, { useState} from 'react';
 import logo from './logo.svg';
 import Person from "./components/Person";
 
+import Filter from "./components/Filter";
+
 
 /*
 * Divide system into three components Good candidates
-  1. Search filter
+  1. Search filter - Done
   2. add form
-  3. Rendering component
+  3. Rendering people - Done
 */
 
 const App = () => {
@@ -80,14 +82,18 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
-      <div>
+      {/*<div>
         filter shown with 
         <input 
           value={search} 
           type="text" 
           onChange={handleSearchChange}
         />
-      </div>
+      </div>*/}
+      <Filter 
+        search={search} 
+        handleSearchChange={handleSearchChange} 
+      />
       <h2>Add a new</h2>
       <form onSubmit={handleSubmit}>
         <div>
