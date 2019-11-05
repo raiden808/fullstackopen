@@ -6,13 +6,6 @@ import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 
 
-/*
-* Divide system into three components Good candidates
-  1. Search filter - Done
-  2. add form
-  3. Rendering people - Done
-*/
-
 const App = () => {
 
   const [persons, setPersons] = useState([
@@ -89,7 +82,7 @@ const App = () => {
         search={search} 
         handleSearchChange={handleSearchChange} 
       />
-      
+
       <h2>Add a new</h2>
 
       <PersonForm 
