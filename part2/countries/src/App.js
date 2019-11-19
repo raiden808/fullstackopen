@@ -27,35 +27,46 @@ function App() {
 		    .then(response => {
 
 				console.log(response.data)
+				console.log("results :",Object.keys(response.data).length)
 
 	      		if(Object.keys(response.data).length > 10){
 	      			setOutput("Too many matches, specify another filter.");
 	      		}
 
-	      		else if(Object.keys(response.data).length <= 5){
-
-	      			let filteredCountry = [];
-	      			const countries = response.data.map(country=>{
-
-	      				filteredCountry.push(<li key={country.alpha2Code}>{country.name}</li>)
-	      			})
-	      			return setOutput(filteredCountry)
-	      		}
+	      		
 
 	      		else if(Object.keys(response.data).length == 1){
 
-
+					console.log("One Triggered")
 
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
 
-	      				console.log(country)
+	      				
+
+	      				filteredCountry.push(
+	      					<div key={country.alpha2Code}>
+	      						<h4>{country.name}</h4>
+	      						<p>capital {country.capital}</p>
+	      						<p>population {country.population}</p>
+	      						<h4>Languages</h4>
+	      					</div>
+	      				)
+	      			})
+	      			return setOutput(filteredCountry)
+	      		}
+
+				else if(Object.keys(response.data).length <= 5){
+
+	      			let filteredCountry = [];
+	      			const countries = response.data.map(country=>{
 
 	      				filteredCountry.push(<li key={country.alpha2Code}>{country.name}</li>)
 	      			})
 	      			return setOutput(filteredCountry)
-	      		}
-	    	})
+		      	}
+
+		    })
 	  	}
 	},[newText])
 
