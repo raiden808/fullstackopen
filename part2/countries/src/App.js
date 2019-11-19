@@ -26,8 +26,8 @@ function App() {
 		    .get(`https://restcountries.eu/rest/v2/name/${newText}`)
 		    .then(response => {
 
-				console.log(response.data)
-				console.log("results :",Object.keys(response.data).length)
+				//console.log(response.data)
+				//console.log("results :",Object.keys(response.data).length)
 
 	      		if(Object.keys(response.data).length > 10){
 	      			setOutput("Too many matches, specify another filter.");
@@ -37,12 +37,12 @@ function App() {
 
 	      		else if(Object.keys(response.data).length == 1){
 
-					console.log("One Triggered")
+					console.log(response.data[0].languages)
 
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
 
-	      				
+	      				//console.log(country.languages)
 
 	      				filteredCountry.push(
 	      					<div key={country.alpha2Code}>
@@ -50,6 +50,9 @@ function App() {
 	      						<p>capital {country.capital}</p>
 	      						<p>population {country.population}</p>
 	      						<h4>Languages</h4>
+		      						{
+
+		      						}
 	      					</div>
 	      				)
 	      			})
