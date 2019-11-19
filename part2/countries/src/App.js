@@ -34,7 +34,6 @@ function App() {
 	      		}
 
 	      		
-
 	      		else if(Object.keys(response.data).length == 1){
 
 					//console.log(response.data[0].languages)
@@ -43,39 +42,22 @@ function App() {
 						singleLanguages.push(<li>{entry.name}</li>);
 					}
 
-	      			// let filteredCountry = [];
-	      			// const countries = response.data.map(country=>{
+	      			let filteredCountry = [];
+	      			const countries = response.data.map(country=>{
 
-	      			// 	//console.log(country.languages)
-
-	      			// 	// filteredCountry.push(
-	      			// 	// 	<div key={country.alpha2Code}>
-	      			// 	// 		<h4>{country.name}</h4>
-	      			// 	// 		<p>capital {country.capital}</p>
-	      			// 	// 		<p>population {country.population}</p>
-	      			// 	// 		<h4>Languages</h4>
-		      		// 	// 			{
-		      		// 	// 				...singleLanguages
-		      		// 	// 			}
-	      			// 	// 	</div>
-	      			// 	// )
-
-	      			// 	filteredCountry.push(
-	      			// 		<div key={country.alpha2Code}>
-	      			// 			<h4>{country.name}</h4>
-	      			// 			<p>capital {country.capital}</p>
-	      			// 			<p>population {country.population}</p>
-	      			// 			<h4>Languages</h4>
-		      		// 				{
-		      							
-		      		// 				}
-	      			// 		</div>
-	      			// 	)
-
-
-
-	      			// })
-	      			// return setOutput(filteredCountry)
+	      				filteredCountry.push(
+	      					<div key={country.alpha2Code}>
+	      						<h4>{country.name}</h4>
+	      						<p>capital {country.capital}</p>
+	      						<p>population {country.population}</p>
+	      						<h4>Languages</h4>
+		      						{
+		      							singleLanguages
+		      						}
+	      					</div>
+	      				)
+	      			})
+	      			return setOutput(filteredCountry)
 	      		}
 
 				else if(Object.keys(response.data).length <= 5){
