@@ -31,7 +31,8 @@ function App() {
 	      		
 	      		else if(Object.keys(response.data).length == 1){
 	      			
-	      			//Axios test
+	      			//Axios test: working
+	      			// Todo: create a separate function call for this.
 	      			axios
 				    .get('http://api.weatherstack.com/forecast?access_key=2b6809eb9a35b327865cb2269ec4149d&query=Manila')
 				    .then(output => {
