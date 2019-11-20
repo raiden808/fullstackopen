@@ -1,5 +1,6 @@
 import React,{ useState, useEffect} from 'react';
 import axios from 'axios'
+import SingleCountry from './components/SingleCountry'
 
 function App() {
 
@@ -11,7 +12,6 @@ function App() {
 
 		setText(inputText);
 	}
-
 
 	/*
 	* By setting `newText` as a checker to only trigger if it's changed.
@@ -29,31 +29,14 @@ function App() {
 	      		
 	      		else if(Object.keys(response.data).length == 1){
 
-					console.log(response.data[0])
-					
-					let singleLanguages = [];
-					for (let entry of response.data[0].languages) {
-						singleLanguages.push(<li>{entry.name}</li>);
-					}
-
+					//console.log(response.data[0])
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
-
+	      				
 	      				filteredCountry.push(
-	      					<div key={country.alpha2Code}>
-	      						<h4>{country.name}</h4>
-	      						<p>capital {country.capital}</p>
-	      						<p>population {country.population}</p>
-	      						<h4>Languages</h4>
-		      						{
-		      							singleLanguages
-		      						}
-		      					<img 
-		      						style={{ height: 100 }} 
-		      						src={country.flag} 
-		      					/>
-	      					</div>
+	      					<SingleCountry country={country} />
 	      				)
+	      				
 	      			})
 	      			return setOutput(filteredCountry)
 	      		}
