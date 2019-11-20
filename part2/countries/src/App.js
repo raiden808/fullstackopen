@@ -4,10 +4,7 @@ import axios from 'axios'
 function App() {
 
 	const [newText, setText] = useState('');
-	//const [countries, setCountries] = useState([])
 	const [output, setOutput] = useState();
-
-	let renderOutput;
 
 	const handleInputChange = e =>{
 		const inputText = e.target.value;
@@ -26,17 +23,14 @@ function App() {
 		    .get(`https://restcountries.eu/rest/v2/name/${newText}`)
 		    .then(response => {
 
-				//console.log(response.data)
-				//console.log("results :",Object.keys(response.data).length)
-
 	      		if(Object.keys(response.data).length > 10){
 	      			setOutput("Too many matches, specify another filter.");
 	      		}
-
 	      		
 	      		else if(Object.keys(response.data).length == 1){
 
-					//console.log(response.data[0].languages)
+					console.log(response.data[0])
+					
 					let singleLanguages = [];
 					for (let entry of response.data[0].languages) {
 						singleLanguages.push(<li>{entry.name}</li>);
@@ -54,6 +48,10 @@ function App() {
 		      						{
 		      							singleLanguages
 		      						}
+		      					<img 
+		      						style={{ height: 100 }} 
+		      						src={country.flag} 
+		      					/>
 	      					</div>
 	      				)
 	      			})
