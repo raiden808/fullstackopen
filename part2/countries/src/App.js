@@ -52,7 +52,7 @@ function App() {
 	      				filteredCountry.push(
 	      					<li key={country.alpha2Code}>
 	      						{country.name}
-	      						<button onClick={()=>displayCountry(country)}>
+	      						<button onClick={()=>handleDisplayCountry(country)}>
 	      							show
 	      						</button>
 	      					</li>
@@ -66,7 +66,7 @@ function App() {
 	},[newText])
 	
 	
-	const displayCountry = (country) =>{
+	const handleDisplayCountry = (country) =>{
 		
 		return setOutput(<SingleCountry country={country} />)
 		
