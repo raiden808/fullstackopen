@@ -46,7 +46,17 @@ function App() {
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
 
-	      				filteredCountry.push(<li key={country.alpha2Code}>{country.name}</li>)
+						//TODO: add button and country object
+	
+
+	      				filteredCountry.push(
+	      					<li key={country.alpha2Code}>
+	      						{country.name}
+	      						<button onClick={()=>displayCountry(country)}>
+	      							show
+	      						</button>
+	      					</li>
+	      				)
 	      			})
 	      			return setOutput(filteredCountry)
 		      	}
@@ -54,6 +64,13 @@ function App() {
 		    })
 	  	}
 	},[newText])
+	
+	
+	const displayCountry = (country) =>{
+		
+		return setOutput(<SingleCountry country={country} />)
+		
+	}
 
   
   	return (
