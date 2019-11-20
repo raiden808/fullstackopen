@@ -5,6 +5,8 @@ import SingleCountry from './components/SingleCountry'
 function App() {
 
 	const [newText, setText] = useState('');
+	
+	// primary display state.
 	const [output, setOutput] = useState();
 
 	const handleInputChange = e =>{
@@ -46,8 +48,6 @@ function App() {
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
 
-						//TODO: add button and country object
-	
 
 	      				filteredCountry.push(
 	      					<li key={country.alpha2Code}>
