@@ -5,9 +5,11 @@ import SingleCountry from './components/SingleCountry'
 function App() {
 
 	const [newText, setText] = useState('');
+	const [weatherData, setWeatherData] = useState()
 	
 	// primary display state.
 	const [output, setOutput] = useState();
+
 
 	const handleInputChange = e =>{
 		const inputText = e.target.value;
@@ -33,12 +35,7 @@ function App() {
 	      			
 	      			//Axios test: working
 	      			// Todo: create a separate function call for this.
-	      			axios
-				    .get('http://api.weatherstack.com/forecast?access_key=2b6809eb9a35b327865cb2269ec4149d&query=Manila')
-				    .then(output => {
-				      console.log(output.data)
-				      //setNotes(response.data)
-				    })
+	      			console.log(getWeather(response.data[0].capital))
 
 					//console.log(response.data[0])
 	      			let filteredCountry = [];
@@ -81,7 +78,14 @@ function App() {
 		
 	}
 	
-	// url: https://www.metaweather.com/api/
+	const getWeather = (capital) =>{
+		axios
+	    .get(`http://api.weatherstack.com/forecast?access_key=2b6809eb9a35b327865cb2269ec4149d&query=${capital}`)
+	    .then(output => {
+	    	console.log(output.data)
+	    	return output.data
+	    }).catch(error => console.log(error));
+	}
 
   
   	return (
