@@ -19,7 +19,7 @@ function App() {
 	* By setting `newText` as a checker to only trigger if it's changed.
 	*/
 	useEffect(() => {
-	  	console.log('effect')
+	  	//console.log('effect')
 	  	if(newText != ""){
 	  		axios
 		    .get(`https://restcountries.eu/rest/v2/name/${newText}`)
@@ -30,6 +30,14 @@ function App() {
 	      		}
 	      		
 	      		else if(Object.keys(response.data).length == 1){
+	      			
+	      			//Axios test
+	      			axios
+				    .get('http://api.weatherstack.com/forecast?access_key=2b6809eb9a35b327865cb2269ec4149d&query=Manila')
+				    .then(output => {
+				      console.log(output.data)
+				      //setNotes(response.data)
+				    })
 
 					//console.log(response.data[0])
 	      			let filteredCountry = [];
@@ -71,6 +79,8 @@ function App() {
 		return setOutput(<SingleCountry country={country} />)
 		
 	}
+	
+	// url: https://www.metaweather.com/api/
 
   
   	return (
