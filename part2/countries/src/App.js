@@ -6,7 +6,7 @@ function App() {
 
 	const [newText, setText] = useState('');
 	const [weatherData, setWeatherData] = useState()
-	
+
 	// primary display state.
 	const [output, setOutput] = useState();
 
@@ -80,11 +80,13 @@ function App() {
 	
 	const getWeather = (capital) =>{
 		axios
-	    .get(`http://api.weatherstack.com/forecast?access_key=2b6809eb9a35b327865cb2269ec4149d&query=${capital}`)
+	    .get(`http://api.weatherstack.com/forecast?access_key=${process.env.REACT_APP_WEATHER_API}&query=${capital}`)
 	    .then(output => {
 	    	console.log(output.data)
 	    	return output.data
-	    }).catch(error => console.log(error));
+	    }).catch(error => 
+	    	console.log(error)
+	    );
 	}
 
   
