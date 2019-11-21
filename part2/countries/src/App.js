@@ -5,7 +5,6 @@ import SingleCountry from './components/SingleCountry'
 function App() {
 
 	const [newText, setText] = useState('');
-	const [weatherData, setWeatherData] = useState()
 
 	// primary display state.
 	const [output, setOutput] = useState();
@@ -33,16 +32,13 @@ function App() {
 	      		
 	      		else if(Object.keys(response.data).length == 1){
 	      			
-	      			//Axios test: working
-	      			// Todo: create a separate function call for this.
-	      			console.log(getWeather(response.data[0].capital))
-
-					//console.log(response.data[0])
 	      			let filteredCountry = [];
 	      			const countries = response.data.map(country=>{
 	      				
 	      				filteredCountry.push(
-	      					<SingleCountry country={country} />
+	      					<SingleCountry 
+	      						country={country}
+	      					/>
 	      				)
 	      				
 	      			})
@@ -74,22 +70,14 @@ function App() {
 	
 	const handleDisplayCountry = (country) =>{
 		
-		return setOutput(<SingleCountry country={country} />)
+		return setOutput(
+				<SingleCountry 
+					country={country}
+				/>
+			)
 		
 	}
 	
-	const getWeather = (capital) =>{
-		axios
-	    .get(`http://api.weatherstack.com/forecast?access_key=${process.env.REACT_APP_WEATHER_API}&query=${capital}`)
-	    .then(output => {
-	    	console.log(output.data)
-	    	return output.data
-	    }).catch(error => 
-	    	console.log(error)
-	    );
-	}
-
-  
   	return (
 	    <div className="App">
 	      <form>
