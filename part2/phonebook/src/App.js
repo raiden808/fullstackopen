@@ -66,14 +66,6 @@ const App = () => {
       }
     })
 
-    // axios.post('http://localhost:3001/persons',newPersonObject)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
     personServices
       .create(newPersonObject)
       .then(returnedPerson => {
@@ -81,10 +73,6 @@ const App = () => {
         setNewName('')
         setNewPhone('')
     })
-
-    // setPersons(persons.concat(newPersonObject))
-    // setNewName('')
-    // setNewPhone('')
   }
 
   /*

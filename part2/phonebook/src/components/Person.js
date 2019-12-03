@@ -12,7 +12,13 @@ const Person = ({ persons, search }) => {
 
 			else{
 				if(nameValue.indexOf(search) >= 0){
-					return <li key={index} >{person.name} {person.phone}</li>;
+					return (
+						<li 
+							key={index} >
+								{person.name} 
+								{person.phone}
+						</li>
+					)
 				}
 
 				else{
