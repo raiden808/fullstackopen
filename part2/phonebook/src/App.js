@@ -66,17 +66,25 @@ const App = () => {
       }
     })
 
-    axios.post('http://localhost:3001/persons',newPersonObject)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios.post('http://localhost:3001/persons',newPersonObject)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
 
-    setPersons(persons.concat(newPersonObject))
-    setNewName('')
-    setNewPhone('')
+    personServices
+      .create(newPersonObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson))
+        setNewName('')
+        setNewPhone('')
+    })
+
+    // setPersons(persons.concat(newPersonObject))
+    // setNewName('')
+    // setNewPhone('')
   }
 
   /*
