@@ -7,6 +7,8 @@ import Person from "./components/Person";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 
+import personServices from "./services/PhoneServices"
+
 
 const App = () => {
 
@@ -18,10 +20,10 @@ const App = () => {
 
   /*retrieve json object*/
   useEffect(()=>{
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response =>{
-        setPersons(response.data)
+    personServices
+      .getAll()
+      .then(initialPersons =>{
+        setPersons(initialPersons)
       })
   },[])
 
