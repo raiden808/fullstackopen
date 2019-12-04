@@ -24,6 +24,8 @@ const App = () => {
       .getAll()
       .then(initialPersons =>{
         setPersons(initialPersons)
+
+        console.log(initialPersons)
       })
   },[])
 
@@ -44,6 +46,18 @@ const App = () => {
     const inputText = e.target.value;
 
     setNewPhone(inputText);
+  }
+
+  /*
+  * Delete handler
+  */
+
+  // use this to find index https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+  // array.find(function(value, index
+
+  // retrieve id first.
+  const handleDelete = e =>{
+    const verify = window.confirm("test")
   }
 
   /*
@@ -109,6 +123,7 @@ const App = () => {
         <Person
           persons={persons} 
           search={search}
+          handleDelete={handleDelete}
         />
       </div>
     </div>

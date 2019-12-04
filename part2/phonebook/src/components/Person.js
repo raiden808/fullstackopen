@@ -1,13 +1,16 @@
 import React from "react";
 
-const Person = ({ persons, search }) => {
+const Person = ({ persons, search, handleDelete}) => {
 	
 	const rows = () => persons.map((person, index)=> 
     	{
     		let nameValue = person.name.toLowerCase();
 
     		if(search == ""){
-				return <li key={index} >{person.name} {person.phone}</li>
+				return <li key={index} >
+							{person.name} {person.phone}
+							<button onClick={handleDelete}>Delete</button>
+						</li>
 			}
 
 			else{
@@ -17,6 +20,7 @@ const Person = ({ persons, search }) => {
 							key={index} >
 								{person.name} 
 								{person.phone}
+								<button>Delete</button>
 						</li>
 					)
 				}
