@@ -20,7 +20,7 @@ const Person = ({ persons, search, handleDelete}) => {
 							key={index} >
 								{person.name} 
 								{person.phone}
-								<button>Delete</button>
+								<button onClick={handleDelete}>Delete</button>
 						</li>
 					)
 				}

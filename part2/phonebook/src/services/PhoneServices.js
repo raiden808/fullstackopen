@@ -12,7 +12,12 @@ const create = newObject =>{
     return request.then(response => response.data)
 }
 
+const deleteUser = userId =>{
+    const request = axios.delete(baseUrl+"/"+userId)
+}
+
 export default {
     getAll,
-    create
+    create,
+    deleteUser
 }

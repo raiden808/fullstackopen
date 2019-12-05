@@ -18,7 +18,9 @@ const App = () => {
   const [newPhone, setNewPhone]  = useState('')
   const [search,setSearch]       = useState('')
 
-  /*retrieve json object*/
+  /**
+   * Initial load of phone json
+   */
   useEffect(()=>{
     personServices
       .getAll()
@@ -29,18 +31,20 @@ const App = () => {
       })
   },[])
 
-  /*
-  * Name handler
-  */
+  /**
+   * State name input handler
+   * @method
+   */
   const handleInputChange = e =>{
     const inputText = e.target.value;
 
     setNewName(inputText);
   }
 
-  /*
-  * Phone handler
-  */
+  /**
+   * State phone input handler
+   * @method
+   */
   const handlePhoneChange = e =>{
     e.preventDefault();
     const inputText = e.target.value;
@@ -48,21 +52,22 @@ const App = () => {
     setNewPhone(inputText);
   }
 
-  /*
-  * Delete handler
-  */
-
-  // use this to find index https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-  // array.find(function(value, index
-
-  // retrieve id first.
+  /**
+   * Delete handler
+   * @method
+   * use this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+   * array.find(function
+   */
   const handleDelete = e =>{
     const verify = window.confirm("test")
+
+    console.log(persons)
   }
 
-  /*
-  * Submit handler
-  */
+  /**
+   * Submits new phone user to notes json db
+   * @method
+   */
   const handleSubmit = e =>{
     e.preventDefault();
 
@@ -72,7 +77,6 @@ const App = () => {
       phone: newPhone
     }
 
-    //filter to block existing name
     const result = persons.filter(obj => {
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
@@ -89,9 +93,10 @@ const App = () => {
     })
   }
 
-  /*
-  * Search handler
-  */
+  /**
+   * Display filtered results
+   * @method
+   */
   const handleSearchChange = e =>{
     e.preventDefault();
     const inputText = e.target.value;
