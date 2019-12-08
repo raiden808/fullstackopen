@@ -57,11 +57,20 @@ const App = () => {
    * @method
    * use this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
    * array.find(function
+   * delete sample: https://alligator.io/react/axios-react/
    */
-  const handleDelete = e =>{
+  const handleDelete = (e,personDetails) =>{
     const verify = window.confirm("test")
 
-    console.log(persons)
+    //retrieve name and last name
+    console.log(e)
+    console.log(personDetails)
+
+    personServices
+      .deleteUser(personDetails.id)
+      .then(returnNewDb =>{
+        setPersons(persons.concat(returnNewDb))
+    })
   }
 
   /**
