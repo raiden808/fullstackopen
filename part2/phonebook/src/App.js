@@ -60,16 +60,20 @@ const App = () => {
    * delete sample: https://alligator.io/react/axios-react/
    */
   const handleDelete = (e,personDetails) =>{
-    const verify = window.confirm("test")
+    const verify = window.confirm(`Remove ${personDetails.name} ?`)
 
-    //retrieve name and last name
-    console.log(e)
-    console.log(personDetails)
+    let i = personDetails.index;
 
     personServices
       .deleteUser(personDetails.id)
       .then(returnNewDb =>{
-        setPersons(persons.concat(returnNewDb))
+
+        /**
+         * new array from immutable state
+         */
+        const filteredItems = persons.slice(0, i).concat(persons.slice(i + 1, persons.length))
+
+        setPersons(filteredItems)
     })
   }
 

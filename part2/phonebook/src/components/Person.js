@@ -4,6 +4,7 @@ const Person = ({ persons, search, handleDelete}) => {
 	
 	const rows = () => persons.map((person, index)=> 
     	{
+
 			let nameValue = person.name.toLowerCase();
 
 			let personDetails = {
