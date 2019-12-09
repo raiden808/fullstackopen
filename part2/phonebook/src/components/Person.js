@@ -13,11 +13,12 @@ const Person = ({ persons, search, handleDelete}) => {
 				index:index
 			}
 			
-			console.log(person)
+			console.log("Person Details: ",person)
 
     		if(search == ""){
 				return <li key={index} >
-							{person.name} {person.phone}
+							{person.name} 
+							{person.phone} 
 							<button onClick={(e)=>{handleDelete(e,personDetails)}}>Delete</button>
 						</li>
 			}
@@ -25,11 +26,10 @@ const Person = ({ persons, search, handleDelete}) => {
 			else{
 				if(nameValue.indexOf(search) >= 0){
 					return (
-						<li 
-							key={index} >
-								{person.name} 
-								{person.phone}
-								<button onClick={handleDelete}>Delete</button>
+						<li key={index}>
+							{person.name} 
+							{person.phone} 
+							<button onClick={(e)=>{handleDelete(e,personDetails)}}>Delete</button>
 						</li>
 					)
 				}
