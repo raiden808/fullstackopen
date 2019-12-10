@@ -90,20 +90,25 @@ const App = () => {
       phone: newPhone
     }
 
+    let exist = false;
+
     const result = persons.filter(obj => {
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
-        return
+
+        exist = true;
       }
     })
 
-    personServices
-      .create(newPersonObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-        setNewName('')
-        setNewPhone('')
-    })
+    if(exist == false){
+      personServices
+        .create(newPersonObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewPhone('')
+      })
+    }
   }
 
   /**

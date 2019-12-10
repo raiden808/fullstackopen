@@ -17,8 +17,7 @@ const Person = ({ persons, search, handleDelete}) => {
 
     		if(search == ""){
 				return <li key={index} >
-							{person.name} 
-							{person.phone} 
+							{person.name} {person.phone} 
 							<button onClick={(e)=>{handleDelete(e,personDetails)}}>Delete</button>
 						</li>
 			}
