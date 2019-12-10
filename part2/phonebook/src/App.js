@@ -112,6 +112,14 @@ const App = () => {
   }
 
   /**
+   * Update existing user number
+   * todo - retrieve number
+   */
+  const updateNumber = () =>{
+
+  }
+
+  /**
    * Display filtered results
    * @method
    */
