@@ -27,7 +27,7 @@ const App = () => {
       .then(initialPersons =>{
         setPersons(initialPersons)
 
-        console.log(initialPersons)
+        console.log("Persons: ",initialPersons)
       })
   },[])
 
@@ -95,6 +95,19 @@ const App = () => {
     const result = persons.filter(obj => {
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
+
+        
+        /**
+         * Updates peron number if exist.
+         * to update state and remove exising array.
+         */
+        personServices
+          .updateNumber(obj.id,newPersonObject)
+          .then(updatedPersons =>{
+            //setPersons(updatedPersons)
+            setPersons(persons.concat(updatedPersons))
+            console.log(updatedPersons)
+          })
 
         exist = true;
       }

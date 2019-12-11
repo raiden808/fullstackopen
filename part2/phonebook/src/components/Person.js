@@ -13,7 +13,7 @@ const Person = ({ persons, search, handleDelete}) => {
 				index:index
 			}
 			
-			console.log("Person Details: ",person)
+			//console.log("Person Details: ",person)
 
     		if(search == ""){
 				return <li key={index} >

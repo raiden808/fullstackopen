@@ -29,8 +29,18 @@ const deleteUser = userId =>{
     return request.then(response => response.data)
 }
 
+/**
+ * Update number
+ * @method
+ */
+const updateNumber = (userId,newObject) =>{
+    const request = axios.put(baseUrl+"/"+userId,newObject)
+    return request.then(response => response.data)
+}
+
 export default {
     getAll,
     create,
-    deleteUser
+    deleteUser,
+    updateNumber
 }
