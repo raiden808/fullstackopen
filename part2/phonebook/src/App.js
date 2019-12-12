@@ -62,19 +62,19 @@ const App = () => {
   const handleDelete = (e,personDetails) =>{
     const verify = window.confirm(`Remove ${personDetails.name} ?`)
 
-    let i = personDetails.index;
-
-    personServices
-      .deleteUser(personDetails.id)
-      .then(returnNewDb =>{
-
-        /**
-         * new array from immutable state
-         */
-        const filteredItems = persons.slice(0, i).concat(persons.slice(i + 1, persons.length))
-
-        setPersons(filteredItems)
-    })
+    if(verify){
+      let i = personDetails.index;
+      personServices
+        .deleteUser(personDetails.id)
+        .then(returnNewDb =>{
+          /**
+           * new array from immutable state
+           */
+          const filteredItems = persons.slice(0, i).concat(persons.slice(i + 1, persons.length))
+  
+          setPersons(filteredItems)
+      })
+    }
   }
 
   /**
@@ -92,7 +92,7 @@ const App = () => {
 
     let exist = false;
 
-    const result = persons.filter(obj => {
+    const result = persons.filter((obj,index) => {
       if(obj.name === newName){
         alert(`${newName} is already added to phonebook`)
 
@@ -101,12 +101,19 @@ const App = () => {
          * Updates peron number if exist.
          * to update state and remove exising array.
          */
+
+         console.log("Exist obj: ",index)
+
         personServices
           .updateNumber(obj.id,newPersonObject)
           .then(updatedPersons =>{
-            //setPersons(updatedPersons)
-            setPersons(persons.concat(updatedPersons))
-            console.log(updatedPersons)
+
+            /**
+             * Sets and find new perons
+             */
+            const newPerson = persons.concat();
+            newPerson.splice(index,1,updatedPersons)
+            setPersons(newPerson)
           })
 
         exist = true;
@@ -122,6 +129,16 @@ const App = () => {
           setNewPhone('')
       })
     }
+  }
+
+  /**
+   * finds and replace existing person
+   */
+  const insertNew = (newObject) =>{
+    var setPersons = persons.concat();
+
+    // let foundIndex = setPersons.findIndex(element => element.id === item.id)
+    // items.splice(foundIndex, 1, item)
   }
 
   /**
