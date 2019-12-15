@@ -94,20 +94,13 @@ const App = () => {
 
     const result = persons.filter((obj,index) => {
       if(obj.name === newName){
-        alert(`${newName} is already added to phonebook`)
 
-        
-        /**
-         * Updates peron number if exist.
-         * to update state and remove exising array.
-         */
+        const verify = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`);
 
-         console.log("Exist obj: ",index)
-
-        personServices
+        if(verify){
+          personServices
           .updateNumber(obj.id,newPersonObject)
           .then(updatedPersons =>{
-
             /**
              * Sets and find new perons
              */
@@ -115,8 +108,14 @@ const App = () => {
             newPerson.splice(index,1,updatedPersons)
             setPersons(newPerson)
           })
-
+        }
+        /**
+         * Updates peron number if exist.
+         * to update state and remove exising array.
+         */
         exist = true;
+        setNewName('')
+        setNewPhone('')
       }
     })
 
