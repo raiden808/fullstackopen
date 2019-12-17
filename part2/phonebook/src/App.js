@@ -17,6 +17,7 @@ const App = () => {
   const [newName, setNewName]    = useState('')
   const [newPhone, setNewPhone]  = useState('')
   const [search,setSearch]       = useState('')
+  const [errorMessage,setErrorMessage] = useState()
 
   /**
    * Initial load of phone json
