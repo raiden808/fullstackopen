@@ -8,6 +8,7 @@ import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 
 import personServices from "./services/PhoneServices"
+import Notification from './components/Notification'
 
 
 const App = () => {
@@ -124,6 +125,13 @@ const App = () => {
       personServices
         .create(newPersonObject)
         .then(returnedPerson => {
+
+          setErrorMessage(`Added ${newName}`)
+
+          setTimeout(()=>{
+            setErrorMessage(null)
+          },5000)
+
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewPhone('')
@@ -163,7 +171,7 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
-
+      <Notification message={errorMessage} />
       <Filter 
         search={search} 
         handleSearchChange={handleSearchChange} 
