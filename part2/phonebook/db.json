@@ -11,11 +11,6 @@
       "id": 7
     },
     {
-      "name": "Danny Phantom",
-      "phone": "013-231",
-      "id": 9
-    },
-    {
       "name": "Donny Ganger",
       "phone": "0123-1221",
       "id": 10
@@ -26,24 +21,9 @@
       "id": 13
     },
     {
-      "name": "test",
-      "phone": "23233",
-      "id": 22
-    },
-    {
       "name": "John Cena",
       "phone": "213213",
       "id": 23
-    },
-    {
-      "name": "Ellen Page",
-      "phone": "123231",
-      "id": 24
-    },
-    {
-      "name": "Bruce Willis",
-      "phone": "12313",
-      "id": 25
     }
   ]
 }

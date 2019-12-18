@@ -20,6 +20,8 @@ const App = () => {
   const [search,setSearch]       = useState('')
   const [errorMessage,setErrorMessage] = useState()
 
+  const [notifStatus,setNotifStatus] = useState();
+
   /**
    * Initial load of phone json
    */
@@ -64,7 +66,17 @@ const App = () => {
   const handleDelete = (e,personDetails) =>{
     const verify = window.confirm(`Remove ${personDetails.name} ?`)
 
+
     if(verify){
+
+      setNotifStatus("delete")
+      setErrorMessage(`Information of ${personDetails.name} has already been removed from server`)
+
+      setTimeout(()=>{
+        setErrorMessage(null)
+      },5000)
+
+
       let i = personDetails.index;
       personServices
         .deleteUser(personDetails.id)
@@ -126,6 +138,7 @@ const App = () => {
         .create(newPersonObject)
         .then(returnedPerson => {
 
+          setNotifStatus("add")
           setErrorMessage(`Added ${newName}`)
 
           setTimeout(()=>{
@@ -171,7 +184,10 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
-      <Notification message={errorMessage} />
+      <Notification 
+        notifStatus={notifStatus}
+        message={errorMessage} 
+      />
       <Filter 
         search={search} 
         handleSearchChange={handleSearchChange} 
