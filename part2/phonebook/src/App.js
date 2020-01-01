@@ -7,6 +7,9 @@ import Person from "./components/Person";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 
+import personServices from "./services/PhoneServices"
+import Notification from './components/Notification'
+
 
 const App = () => {
 
@@ -15,28 +18,37 @@ const App = () => {
   const [newName, setNewName]    = useState('')
   const [newPhone, setNewPhone]  = useState('')
   const [search,setSearch]       = useState('')
+  const [errorMessage,setErrorMessage] = useState()
 
-  /*retrieve json object*/
+  const [notifStatus,setNotifStatus] = useState();
+
+  /**
+   * Initial load of phone json
+   */
   useEffect(()=>{
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response =>{
-        setPersons(response.data)
+    personServices
+      .getAll()
+      .then(initialPersons =>{
+        setPersons(initialPersons)
+
+        console.log("Persons: ",initialPersons)
       })
   },[])
 
-  /*
-  * Name handler
-  */
+  /**
+   * State name input handler
+   * @method
+   */
   const handleInputChange = e =>{
     const inputText = e.target.value;
 
     setNewName(inputText);
   }
 
-  /*
-  * Phone handler
-  */
+  /**
+   * State phone input handler
+   * @method
+   */
   const handlePhoneChange = e =>{
     e.preventDefault();
     const inputText = e.target.value;
@@ -44,9 +56,45 @@ const App = () => {
     setNewPhone(inputText);
   }
 
-  /*
-  * Submit handler
-  */
+  /**
+   * Delete handler
+   * @method
+   * use this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+   * array.find(function
+   * delete sample: https://alligator.io/react/axios-react/
+   */
+  const handleDelete = (e,personDetails) =>{
+    const verify = window.confirm(`Remove ${personDetails.name} ?`)
+
+
+    if(verify){
+
+      setNotifStatus("delete")
+      setErrorMessage(`Information of ${personDetails.name} has already been removed from server`)
+
+      setTimeout(()=>{
+        setErrorMessage(null)
+      },5000)
+
+
+      let i = personDetails.index;
+      personServices
+        .deleteUser(personDetails.id)
+        .then(returnNewDb =>{
+          /**
+           * new array from immutable state
+           */
+          const filteredItems = persons.slice(0, i).concat(persons.slice(i + 1, persons.length))
+  
+          setPersons(filteredItems)
+      })
+    }
+  }
+
+  /**
+   * Submits new phone user to notes json db
+   * @method
+   */
   const handleSubmit = e =>{
     e.preventDefault();
 
@@ -56,22 +104,76 @@ const App = () => {
       phone: newPhone
     }
 
-    //filter to block existing name
-    const result = persons.filter(obj => {
+    let exist = false;
+
+    const result = persons.filter((obj,index) => {
       if(obj.name === newName){
-        alert(`${newName} is already added to phonebook`)
-        return
+
+        const verify = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`);
+
+        if(verify){
+          personServices
+          .updateNumber(obj.id,newPersonObject)
+          .then(updatedPersons =>{
+            /**
+             * Sets and find new perons
+             */
+            const newPerson = persons.concat();
+            newPerson.splice(index,1,updatedPersons)
+            setPersons(newPerson)
+          })
+        }
+        /**
+         * Updates peron number if exist.
+         * to update state and remove exising array.
+         */
+        exist = true;
+        setNewName('')
+        setNewPhone('')
       }
     })
 
-    setPersons(persons.concat(newPersonObject))
-    setNewName('')
-    setNewPhone('')
+    if(exist == false){
+      personServices
+        .create(newPersonObject)
+        .then(returnedPerson => {
+
+          setNotifStatus("add")
+          setErrorMessage(`Added ${newName}`)
+
+          setTimeout(()=>{
+            setErrorMessage(null)
+          },5000)
+
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewPhone('')
+      })
+    }
   }
 
-  /*
-  * Search handler
-  */
+  /**
+   * finds and replace existing person
+   */
+  const insertNew = (newObject) =>{
+    var setPersons = persons.concat();
+
+    // let foundIndex = setPersons.findIndex(element => element.id === item.id)
+    // items.splice(foundIndex, 1, item)
+  }
+
+  /**
+   * Update existing user number
+   * todo - retrieve number
+   */
+  const updateNumber = () =>{
+
+  }
+
+  /**
+   * Display filtered results
+   * @method
+   */
   const handleSearchChange = e =>{
     e.preventDefault();
     const inputText = e.target.value;
@@ -82,7 +184,10 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
-
+      <Notification 
+        notifStatus={notifStatus}
+        message={errorMessage} 
+      />
       <Filter 
         search={search} 
         handleSearchChange={handleSearchChange} 
@@ -103,6 +208,7 @@ const App = () => {
         <Person
           persons={persons} 
           search={search}
+          handleDelete={handleDelete}
         />
       </div>
     </div>
