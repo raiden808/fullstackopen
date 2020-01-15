@@ -144,7 +144,9 @@ const App = () => {
             setErrorMessage(null)
           },5000)
 
-          setPersons(persons.concat(returnedPerson))
+          console.log("test",returnedPerson)
+
+          setPersons(persons.slice(0,0).concat(returnedPerson))
           setNewName('')
           setNewPhone('')
       })
