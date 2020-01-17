@@ -146,7 +146,7 @@ const App = () => {
 
           console.log("test",returnedPerson)
 
-          setPersons(persons.slice(0,0).concat(returnedPerson))
+          setPersons(persons.slice(0).concat(returnedPerson))
           setNewName('')
           setNewPhone('')
       })
