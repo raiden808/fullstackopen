@@ -149,7 +149,19 @@ const App = () => {
           setPersons(persons.slice(0).concat(returnedPerson))
           setNewName('')
           setNewPhone('')
-      })
+        })
+        .catch(error => {
+          // this is the way to access the error message
+
+
+          setErrorMessage(`${error.response.data.error}`);
+
+          setTimeout(()=>{
+            setErrorMessage(null)
+          },5000)
+
+          console.log(error.response.data)
+        })
     }
   }
 
